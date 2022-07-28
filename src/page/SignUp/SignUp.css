@@ -1,0 +1,45 @@
+.signup{
+    width: 80vw;
+    margin:auto;
+    padding:1vw 5vw ;
+    border: 1px solid white;
+    background-color: black;
+}
+input{
+    border:none;
+    border-bottom:1px solid white;
+    font-family: PressStart;
+    width:auto;
+    margin:20px 0;
+    background-color: black;
+}
+.return{
+    padding-left:10px;
+    width: 16px;
+}
+.crois{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.password,.password2, .groupe, .ville, .ecole,.surnom{
+    display: none;
+}
+.nom:valid + br + .password{
+    display: contents;
+}
+.passwordInput:valid + br+ .password2{
+    display: contents;
+}
+.passwordInput2:valid + br+ .groupe{
+    display: contents;
+}
+.groupe input:valid + br + .ville{
+    display: contents;
+}
+.ville input:valid + br + .ecole{
+    display: contents;
+}
+.ecole input:valid + .surnom{
+    display: contents;
+}

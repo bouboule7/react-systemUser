@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "PressStart";
+  src: url("./shared/PressStart2P-Regular.ttf");
+  }
+
+  body {
+  margin: 1vw;
+  font-family:PressStart;
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: black;
+  color: white;
+}
+
+button{
+  font-family: PressStart;
+  margin-top: 10px;
+}

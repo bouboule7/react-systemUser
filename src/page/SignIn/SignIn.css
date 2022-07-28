@@ -1,0 +1,32 @@
+input{
+    background-color: black;
+    border:none;
+    border-bottom:1px solid white;
+    color: white;
+    font-family: PressStart;
+    width:auto;
+    margin:20px 0;
+}
+form{
+    margin: 50px;
+}
+button{
+    padding: 10px ;
+}
+.d-flex{
+    display: flex;
+    justify-content:space-around;
+}
+.password{
+    display: none;
+}
+.login:valid + br + .password{
+    display: contents;
+}
+.return{
+    padding-left:10px;
+    width: 16px;
+}
+a:hover{
+    color: rgb(165, 87, 238);
+}

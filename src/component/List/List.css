@@ -1,0 +1,26 @@
+
+table, IconButton, 	.MuiTablePagination-toolbar{
+    color:white;
+    background-color: rgb(0, 0, 0);
+    font-family: PressStart;
+}
+thead{
+    border-bottom: rgb(255, 255, 255) 1px solid;
+}
+option{
+    color: black;
+}
+td{
+    height: 25px;
+    font-size:13px
+}
+Connected{
+    width: 50vw;
+}
+.lists{
+    height: 95vh;
+    overflow: auto;
+}
+.nom{
+    width: 40%;
+}

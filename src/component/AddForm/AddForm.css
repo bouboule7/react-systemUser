@@ -1,0 +1,39 @@
+.formulaireAdd{
+    position: absolute;
+    border:1px solid #ccc;
+    box-shadow:1px 1px 1Px rgb(255, 255, 255);
+    padding:30px 40px 0px;
+    box-sizing:border-box;
+    transition: all 3s ease-out;
+    top:1px;
+    margin-left: 2vw;
+    z-index: 1;
+    width: 95vw;
+    background-color: black;
+}
+.crois{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.password, .groupe, .ville, .ecole,.surnom{
+    display: none;
+}
+.nom:valid + br + .password{
+    display: contents;
+}
+.passwordInput:valid + br+ .groupe{
+    display: contents;
+}
+.groupe input:valid + br + .ville{
+    display: contents;
+}
+.ville input:valid + br + .ecole{
+    display: contents;
+}
+.ecole input:valid + .surnom{
+    display: contents;
+}
+.passwordInput{
+    color: black;
+}
