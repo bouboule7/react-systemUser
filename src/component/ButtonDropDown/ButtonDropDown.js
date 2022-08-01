@@ -4,10 +4,12 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
 import SessionEdit from './../SessionEdit/SessionEdit';
 import TimeToLive from '../TimeToLive/TimeToLive';
+import Timer from './../CountDown/CountDown'
 class ButtonDropDown extends React.Component {
   state={
     sessionEditVisible:false,
-    timeTiLive:false
+    timeTiLive:false,
+    timeTL:300
   }
   montrerTimeToLive =()=>{
       this.setState({
@@ -24,6 +26,12 @@ class ButtonDropDown extends React.Component {
       sessionEditVisible:false,
     })
   }
+
+  setTTL=(temps)=>{
+    this.setState({
+      timeTL:temps
+    })
+  }
   render(){
   return (
     <div className="dropDown">
@@ -31,8 +39,8 @@ class ButtonDropDown extends React.Component {
         <ul>
             <li><button onClick={this.montrerSessionEdit} >Edit Session <EditIcon /></button></li>
             <SessionEdit visible={this.state.sessionEditVisible} cacher={this.cacherSessionEdit} />
-            <li><button onClick={this.montrerTimeToLive}>TimeToLive <HourglassBottomIcon /></button></li>
-            <TimeToLive visible={this.state.timeTiLive} />
+            <li><button onClick={this.montrerTimeToLive}>TimeToLive <HourglassBottomIcon /> <Timer ttl={this.state.timeTL}/></button></li>
+            <TimeToLive visible={this.state.timeTiLive} setTTL={this.setTTL}/>
         </ul>
     </div>
   );
