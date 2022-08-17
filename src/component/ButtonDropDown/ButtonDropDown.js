@@ -1,8 +1,8 @@
 import * as React from 'react';
-import EditIcon from '@mui/icons-material/Edit';
+// import EditIcon from '@mui/icons-material/Edit';
 import SettingsIcon from '@mui/icons-material/Settings';
 import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
-import SessionEdit from './../SessionEdit/SessionEdit';
+// import SessionEdit from './../SessionEdit/SessionEdit';
 import TimeToLive from '../TimeToLive/TimeToLive';
 import Timer from './../CountDown/CountDown'
 class ButtonDropDown extends React.Component {
@@ -11,20 +11,25 @@ class ButtonDropDown extends React.Component {
     timeTiLive:false,
     timeTL:300
   }
+  
   montrerTimeToLive =()=>{
       this.setState({
         timeTiLive:!this.state.timeTiLive,
       })
   }
-  montrerSessionEdit=()=>{
-      this.setState({
-        sessionEditVisible:true
-      })
-  }
-  cacherSessionEdit=()=>{
-    this.setState({
-      sessionEditVisible:false,
-    })
+  // montrerSessionEdit=()=>{
+  //     this.setState({
+  //       sessionEditVisible:true
+  //     })
+  // }
+  // cacherSessionEdit=()=>{
+  //   this.setState({
+  //     sessionEditVisible:false,
+  //   })
+  // }
+  deconnection(e){
+    this.props.deconnection(0)
+    console.log('ato')
   }
 
   setTTL=(temps)=>{
@@ -37,10 +42,10 @@ class ButtonDropDown extends React.Component {
     <div className="dropDown">
         <button>Setting <SettingsIcon/> </button >
         <ul>
-            <li><button onClick={this.montrerSessionEdit} >Edit Session <EditIcon /></button></li>
-            <SessionEdit visible={this.state.sessionEditVisible} cacher={this.cacherSessionEdit} />
-            <li><button onClick={this.montrerTimeToLive}>TimeToLive <HourglassBottomIcon /> <Timer ttl={this.state.timeTL}/></button></li>
-            <TimeToLive visible={this.state.timeTiLive} setTTL={this.setTTL}/>
+            {/* <li><button onClick={this.montrerSessionEdit} >Edit Session <EditIcon /></button></li> */}
+            {/* <SessionEdit visible={this.state.sessionEditVisible} cacher={this.cacherSessionEdit} /> */}
+            <li><button onClick={this.montrerTimeToLive}>TimeToLive <HourglassBottomIcon /> <Timer deconnection={()=>{this.props.deconnection()}}  ttl={this.state.timeTL}/></button></li>
+            <TimeToLive visible={this.state.timeTiLive}setTTL={this.setTTL}/>
         </ul>
     </div>
   );

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect , useState} from 'react'
 import Box from '@mui/material/Box';
 import Table from '@mui/material/Table';
 import TableContainer from '@mui/material/TableContainer';
@@ -61,27 +61,19 @@ function TablePaginationActions(props) {
   );
 }
 
-function createData(name, calories, fat) {
-  return { name, calories, fat };
-}
+export default function List(props) {
+  const [state, setState]=useState([])
+  let changemet=props.changement;
+  useEffect(()=>{
+    fetch("http://localhost:8081/connected").then(response=>response.json())
+          .then(data=>{
+            setState(data)
+          })
+          .catch((err)=>{
+            alert("error"+err.message);
+          })
+  },[changemet])
 
-const rows = [
-  createData('Cupcake', 305, 3.7),
-  createData('Donut', 452, 25.0),
-  createData('Eclair', 262, 16.0),
-  createData('Frozen yoghurt', 159, 6.0),
-  createData('Gingerbread', 356, 16.0),
-  createData('Honeycomb', 408, 3.2),
-  createData('Ice cream sandwich', 237, 9.0),
-  createData('Jelly Bean', 375, 0.0),
-  createData('KitKat', 518, 26.0),
-  createData('Lollipop', 392, 0.2),
-  createData('Marshmallow', 318, 0),
-  createData('Nougat', 360, 19.0),
-  createData('Oreo', 437, 18.0),
-].sort((a, b) => (a.calories < b.calories ? -1 : 1));
-
-export default function List() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
@@ -126,24 +118,24 @@ export default function List() {
         </thead>
         <tbody>
           {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
+            ? state.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : state
           ).map((row) => (
-            <tr key={row.name}>
+            <tr key={row.userName}>
               <td className="nom">
-                {row.name}
+                {row.userName}
               </td>
               <td  >
-                {row.calories}
+                {row.password}
               </td>
               <td >
-                {row.fat}
+                {row.userId}
               </td>
               <td>
-                12345
+                {row.groupId}
               </td>
               <td>
-                Misa2024
+              {row.groupe}
               </td>
             </tr>
           ))}
@@ -153,7 +145,7 @@ export default function List() {
             <TablePagination
               rowsPerPageOptions={[3, 5,10,15,20,25, { label: 'All', value: -1 }]}
               colSpan={3}
-              count={rows.length}
+              count={state.length}
               rowsPerPage={rowsPerPage}
               page={page}
               SelectProps={{

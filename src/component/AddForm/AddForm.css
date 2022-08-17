@@ -22,18 +22,3 @@
 .nom:valid + br + .password{
     display: contents;
 }
-.passwordInput:valid + br+ .groupe{
-    display: contents;
-}
-.groupe input:valid + br + .ville{
-    display: contents;
-}
-.ville input:valid + br + .ecole{
-    display: contents;
-}
-.ecole input:valid + .surnom{
-    display: contents;
-}
-.passwordInput{
-    color: black;
-}

@@ -1,46 +1,70 @@
-import React from 'react'
+import React, { Component } from 'react'
 import './AddForm.css'
-export default function Modal(props) {
+export default class Modal extends Component{
+  constructor(props){
+    super(props)
+    this.state={
+      userName:"",
+      password:""
+    }
+  }
+  handleChange=(event)=>{
+    this.setState({
+      [event.target.name]:event.target.value
+    }) 
+
+    console.log("a"+event.target.value)
+  }
+  handleSubmit=(e)=>{
+    e.preventDefault();
+    alert("submit")
+
+    const requestOption={
+      method:'POST',
+      body: JSON.stringify({
+        userName: this.state.userName,
+        password: this.state.password,
+        groupe:this.props.groupe
+        })
+    };
+      fetch("http://localhost:8081/addUser", requestOption).then(response=>response.json())
+        .then(data=>{
+          if(data.success){
+            this.props.actualiser();
+          }      
+        })
+        .catch((err)=>{
+          alert("error"+err.message);
+        })
+        this.setState=({
+          userName:"",
+          password:""
+        })
+        this.inputName.value=""
+        this.inputPassword.value=""
+        this.props.cacher()
+  }
+  render(){
   return (
     <div className="formulaireAdd"
     style={{
-        transform:props.visible ? 'translateY(0vh)' : 'translateY(-100vh)',
-        opacity: props.visible ? '1' : '0'
+        transform:this.props.visible ? 'translateY(0vh)' : 'translateY(-100vh)',
+        opacity: this.props.visible ? '1' : '0'
     }}>
-        <button className="crois" onClick={props.cacher}>x</button>
+        <button className="crois" onClick={this.props.cacher}>x</button>
         <h1>Add new User</h1>
-        <form>
+        <form  onSubmit={ (e)=>{this.handleSubmit(e)}}>
           <p>Remplisser les champs suivant:</p>
           <label htmlFor="nom"> Name:</label>
-          <input type="text" className="nom" name="nom" required/>
+          <input type="text" className="nom" name="userName" ref={el => this.inputName = el} onChange={(event)=>{this.handleChange(event); console.log("s"); }} required/>
           <br/>
           <div className="password">
             <label htmlFor="">Password: </label>
-            <input placeholder="*****" className="passwordInput" required type="password"/>
-            <br/>
-            <div className="groupe">
-              <label htmlFor="nom">Groupe:</label>
-              <input type="text" name="groupe" required/>
-              <br/>
-              <div className="ville">
-                <p>Veuillez repondre au serie de question pour la processus de recuperation:</p>
-                <label htmlFor="nom">Dans quelle ville est vous née:</label>
-                <input type="text" name="ville" required/>
-                <br/>
-                <div className="ecole">
-                  <label htmlFor="nom">Quel est le nom de votre ecole:</label>
-                  <input type="text" name="ecole" required/>
-                  <div className="surnom">
-                    <br/>
-                    <label htmlFor="nom">Quel est votre surnom:</label>
-                    <input type="text" name="surnom" required/>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <input placeholder="*****" className="passwordInput" name="password" ref={el => this.inputPassword = el} onChange={(event)=>{this.handleChange(event) }} required type="password"/>
           </div>
           <p>Press <button>Enter<img className="return" src="https://www.svgrepo.com/show/159223/black-left-arrow.svg" alt="return"/></button> for submit</p>
         </form>
     </div>
   )
+}
 }

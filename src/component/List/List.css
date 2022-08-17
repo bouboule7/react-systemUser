@@ -20,6 +20,7 @@ Connected{
 .lists{
     height: 95vh;
     overflow: auto;
+    text-align: center;
 }
 .nom{
     width: 40%;

@@ -7,7 +7,21 @@ import ButtonDropDown from '../../component/ButtonDropDown/ButtonDropDown';
 
 export default class Connected extends Component {
   state={
-    addUserVisible:false
+    addUserVisible:false,
+    changement:1,
+    userName:"",
+    groupe:""
+  }
+  componentDidMount(){
+    this.setState({
+      userName:this.props.user,
+      groupe:this.props.groupe
+    })
+  }
+  setChangement=()=>{
+    this.setState({
+      changement: this.state.changement+1
+    })
   }
   montrer=()=>{
       this.setState({
@@ -19,19 +33,23 @@ export default class Connected extends Component {
           addUserVisible:false
       })
   }
+  deconnection=(e)=>{
+    this.props.deconnection("/")
+  }
   render() {
     return (
       <div className="connected">
-          <AddForm visible={this.state.addUserVisible} cacher={this.cacher}/>
+          <AddForm visible={this.state.addUserVisible} cacher={this.cacher} actualiser={this.setChangement} groupe={this.state.groupe}/>
           <Grid container spacing={2}>
-            <Grid xs={3}>
+            <Grid xs={2}>
               <h3>User Gestion</h3>
-              <button onClick={this.props.Deconnection}>Esc</button>
-              <ButtonDropDown/>
+              <h3>{this.props.user}</h3>
+              <button onClick={()=>{this.props.deconnection("/")}}>Esc</button>
+              <ButtonDropDown deconnection={this.deconnection}/>
               <button onClick={this.montrer}>Add</button>
             </Grid>
-            <Grid  xs={9}>
-              <List/>
+            <Grid  xs={10}>
+              <List changement={this.state.changement}/>
             </Grid>
           </Grid>
       </div>

@@ -16,7 +16,7 @@ export default function TimeToLive(props) {
             <form>
                 <label htmlFor="nom"> Time session :</label>
                 <input type="number" className="nom" name="nom" onChange={handleChange}/>
-                <label htmlFor="nom"> s :</label>
+                <label htmlFor="nom"> s</label>
             </form>
         </div>
   )

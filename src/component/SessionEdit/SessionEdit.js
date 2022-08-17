@@ -7,7 +7,7 @@ export default function SessionEdit(props) {
         opacity: props.visible ? '1' : '0'
     }}>
         <button className="crois" onClick={props.cacher}>x</button>
-        <h1>Add new User</h1>
+        <h1>Edit your information</h1>
         <form>
           <p>Remplisser les champs suivant:</p>
           <label htmlFor="nom"> Name:</label>
@@ -21,20 +21,8 @@ export default function SessionEdit(props) {
               <label htmlFor="nom">Groupe:</label>
               <input type="text" name="groupe" required/>
               <br/>
-              <div className="ville">
-                <p>Veuillez repondre au serie de question pour la processus de recuperation:</p>
-                <label htmlFor="nom">Dans quelle ville est vous née:</label>
-                <input type="text" name="ville" required/>
-                <br/>
-                <div className="ecole">
-                  <label htmlFor="nom">Quel est le nom de votre ecole:</label>
-                  <input type="text" name="ecole" required/>
-                  <div className="surnom">
-                    <br/>
-                    <label htmlFor="nom">Quel est votre surnom:</label>
-                    <input type="text" name="surnom" required/>
-                  </div>
-                </div>
+              <div className="password2">
+                <label htmlFor="password2">Veuillez saisir votre mot de passe pour confirmer les changements</label>
               </div>
             </div>
           </div>

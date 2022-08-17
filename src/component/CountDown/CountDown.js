@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useTimer } from "react-timer-hook";
 
-function MyTimer({ expiryTimestamp }) {
+function MyTimer( props) {
     useEffect(()=>{
-        restart(expiryTimestamp)
+        restart(props.expiryTimestamp)
     })
+    let expiryTimestamp=props.expiryTimestamp
   let {
     seconds,
     minutes,
@@ -12,7 +13,7 @@ function MyTimer({ expiryTimestamp }) {
     restart
   } = useTimer({
     expiryTimestamp,
-    onExpire: () => alert("onExpire called")
+    onExpire: () => { props.deconnection("/")}
   });
   return (
     <div style={{ textAlign: "center" }}>
@@ -31,7 +32,7 @@ export default function Timer (props){
         time.setSeconds(time.getSeconds()+props.ttl);
       return (
         <div>
-            <MyTimer expiryTimestamp={time} />
+            <MyTimer expiryTimestamp={time} deconnection={props.deconnection} />
         </div>
         );
    }
